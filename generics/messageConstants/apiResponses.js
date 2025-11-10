@@ -371,5 +371,7 @@ module.exports = {
     "USER_ROLES_NOT_FOUND" : "Could not found user roles",
     "OBSERVATION_NOT_RELEVENT_FOR_USER" : "Dear User, this Observation is not relevant for your sub-role and location",
     "SUBMISSION_NOT_FOUND_OR_SUBMISSION_STATUS_NOT_COMPLETE":"No submission found or Submission status is not completed",
-    "FAILED_TO_START_RESOURCE": "There was an error in starting/joining. Please try again after some time."
+    "FAILED_TO_START_RESOURCE": "There was an error in starting/joining. Please try again after some time.",
+    "LINK_IS_NOT_ACTIVE_YET":"The link has not started yet. Please try again from:" ,
+    "NO_SOLUTION_FOUND_FOR_THE_LINK": 'This link appears to be invalid. Please use a valid link to continue.',
 }

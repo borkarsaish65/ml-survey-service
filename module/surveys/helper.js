@@ -21,6 +21,8 @@ const surveyAndFeedback = "SF";
 const questionsHelper = require(MODULES_BASE_PATH + "/questions/helper");
 const userRolesHelper = require(MODULES_BASE_PATH + "/userRoles/helper");
 const userProfileService = require(ROOT_PATH + "/generics/services/users");
+const timeZoneDifference = process.env.TIMEZONE_DIFFRENECE_BETWEEN_LOCAL_TIME_AND_UTC;
+const moment = require('moment-timezone');
 
 /**
     * SurveysHelper
@@ -723,7 +725,11 @@ module.exports = class SurveysHelper {
                 )
 
                 if (!solutionDocument.length) {
-                    throw new Error(messageConstants.apiResponses.SOLUTION_NOT_FOUND)
+                    throw new Error(messageConstants.apiResponses.NO_SOLUTION_FOUND_FOR_THE_LINK)
+                }
+
+                if(solutionDocument[0].startDate > new Date()){
+                    throw new Error(messageConstants.apiResponses.LINK_IS_NOT_ACTIVE_YET+moment(solutionDocument[0].startDate).utc().utcOffset(timeZoneDifference).add(1, "minute").format("ddd, D MMM YYYY, hh:mm A"));
                 }
 
                 if ( version === "" ) {
