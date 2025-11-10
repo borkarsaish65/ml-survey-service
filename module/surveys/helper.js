@@ -21,9 +21,8 @@ const surveyAndFeedback = "SF";
 const questionsHelper = require(MODULES_BASE_PATH + "/questions/helper");
 const userRolesHelper = require(MODULES_BASE_PATH + "/userRoles/helper");
 const userProfileService = require(ROOT_PATH + "/generics/services/users");
-const timeZoneDifference = process.env.TIMEZONE_DIFFRENECE_BETWEEN_LOCAL_TIME_AND_UTC;
+const timeZoneDifference = process.env.TIMEZONE_DIFFRENECE_BETWEEN_LOCAL_TIME_AND_UTC || '+5:30';
 const moment = require('moment-timezone');
-
 /**
     * SurveysHelper
     * @class
@@ -692,7 +691,6 @@ module.exports = class SurveysHelper {
     static getDetailsByLink(link= "", userId= "", token= "", roleInformation= {},version = "") {
         return new Promise(async (resolve, reject) => {
             try {
-
                 if (link == "") {
                     throw new Error(messageConstants.apiResponses.LINK_REQUIRED_CHECK)
                 }
@@ -717,6 +715,7 @@ module.exports = class SurveysHelper {
                     "description",
                     "type",
                     "endDate",
+                    "startDate",
                     "status",
                     "programId",
                     "programExternalId",
